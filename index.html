@@ -12,11 +12,10 @@ body {
 }
 
 body.no-scroll {
-  overflow: hidden; /* Disable scrolling */
+  overflow: hidden;
 }
 
 .parallax {
-  /* Set a specific height */
   height: 75vh; 
   width: 75vw;
   border: solid;
@@ -32,55 +31,52 @@ body.no-scroll {
   background-repeat: no-repeat;
   background-size: cover;
 
-  transition: all 0.5s ease-in-out;  /* Add a smooth transition for size changes */
+  transition: all 0.5s ease-in-out;
 }
 </style>
 </head>
 <body>
 
-<h1 style="margin-left: auto; margin-right: auto; max-width: fit-content;">Meine Werke:</h1>
+<h1 style="margin-left: auto; margin-right: auto; max-width: fit-content;">Meine Fotos:</h1>
 
-<div id="1" class="parallax" onclick="clickPicture(1)" style="background-image: url('komprimiert-1.jpg');"></div>
-<div id="2" class="parallax" onclick="clickPicture(2)" style="background-image: url('komprimiert-2.jpg');"></div>
-<div id="3" class="parallax" onclick="clickPicture(3)" style="background-image: url('komprimiert-3.jpg');"></div>
-<div id="4" class="parallax" onclick="clickPicture(4)" style="background-image: url('komprimiert-4.jpg');"></div>
-<div id="5" class="parallax" onclick="clickPicture(5)" style="background-image: url('komprimiert-5.jpg');"></div>
+<div id="1" class="parallax" onclick="clickPicture(1)" style="background-image: url('./assets/photo-1.jpg');"></div>
+<div id="2" class="parallax" onclick="clickPicture(2)" style="background-image: url('./assets/photo-2.jpg');"></div>
+<div id="3" class="parallax" onclick="clickPicture(3)" style="background-image: url('./assets/photo-3.jpg');"></div>
+<div id="4" class="parallax" onclick="clickPicture(4)" style="background-image: url('./assets/photo-4.jpg');"></div>
+<div id="5" class="parallax" onclick="clickPicture(5)" style="background-image: url('./assets/photo-5.jpg');"></div>
 
-<h1 style="margin-left: auto; margin-right: auto; max-width: fit-content;">Niklas</h1>
+<div style="height: 160px;"></div>
 </body>
 
 <script>
-  let openPicture = null;  // Track the currently opened picture
+  let openPicture = null;
 
   function clickPicture(picture) {
     let pic = document.getElementById(picture);
 
-    // If the clicked picture is already open, close it
     if (openPicture === pic) {
       closePicture(pic);
     } else {
-      // If there's another picture open, close it first
       if (openPicture) {
         closePicture(openPicture);
       }
 
-      // Open the clicked picture
       scroll({
         top: pic.getBoundingClientRect().top + window.scrollY,
         behavior: "smooth",
       });
       pic.style.height = "98vh";
       pic.style.width = "98vw";
-      document.body.classList.add('no-scroll');  // Disable scrolling
-      openPicture = pic;  // Track the opened picture
+      document.body.classList.add('no-scroll');
+      openPicture = pic;
     }
   }
 
   function closePicture(pic) {
     pic.style.height = "75vh";
     pic.style.width = "75vw";
-    document.body.classList.remove('no-scroll');  // Enable scrolling again
-    openPicture = null;  // Reset the opened picture
+    document.body.classList.remove('no-scroll');
+    openPicture = null;
   }
 </script>
 </html>

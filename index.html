@@ -50,7 +50,19 @@ body.no-scroll {
 
 <script>
   let openPicture = null;
+  const pictures = ['./assets/photo-1.jpg', './assets/photo-2.jpg', './assets/photo-3.jpg', './assets/photo-4.jpg', './assets/photo-5.jpg']
 
+  function resizePicture(pic, url) {
+    const imgElement = document.createElement("img");
+    imgElement.src = url;
+    imgElement.style.maxWidth = "98vw"
+    imgElement.style.maxHeight = "98vh"
+    pic.style.maxHeight = "98vh";
+    pic.style.maxWidth = "98vw";
+    pic.innerHTML = '';
+    pic.appendChild(imgElement);
+  }
+  
   function clickPicture(picture) {
     let pic = document.getElementById(picture);
 
@@ -61,13 +73,12 @@ body.no-scroll {
         closePicture(openPicture);
       }
 
-      scroll({
+      window.scrollTo({
         top: pic.getBoundingClientRect().top + window.scrollY,
         behavior: "smooth",
       });
-      pic.style.height = "98vh";
-      pic.style.width = "98vw";
       document.body.classList.add('no-scroll');
+      resizePicture(pic, pictures[picture - 1])
       openPicture = pic;
     }
   }
@@ -76,6 +87,7 @@ body.no-scroll {
     pic.style.height = "75vh";
     pic.style.width = "75vw";
     document.body.classList.remove('no-scroll');
+    pic.innerHTML = '';
     openPicture = null;
   }
 </script>

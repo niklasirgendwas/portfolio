@@ -1,3 +1,159 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Niklas' Portfolio</title>
+<style>
+body {
+  background-color: #151313;
+  color: white;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin: -8px;
+  overflow-x: hidden;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+.parallax {
+  height: 75vh; 
+  width: 75vw;
+  border: solid;
+  border-color: #756e6e;
+  border-radius: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2.5vh;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  transition: all 0.5s ease-in-out;
+
+  z-index: 0;
+}
+
+.hover:hover {
+    border-radius: 75px;
+
+    box-shadow: -15px 15px 15px rgba(0, 0, 0, 0.596);
+    width: 85vw;
+    height: 80vh;
+
+    margin-top: -1.5vh;
+    margin-bottom: 1vh;
+
+    cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+#randomDiv {
+    opacity: 0%;
+    width: 98vw;
+    height: 100vh;
+    background-color: #15131375;
+    pointer-events: none;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+
+    transition: 1s ease-in-out;
+}
+
+#popUpImg {
+    max-width: 0px;
+    max-height: 0px;
+    border-radius: 50px;
+    position: fixed;
+    top: 50vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border: 0px solid #756e6e;
+}
+
+
+</style>
+</head>
+<body id="body">
+
+<div id="randomDiv"></div>
+
+<h1 style="margin-left: auto; margin-right: auto; max-width: fit-content;">Meine Fotos:</h1>
+<div id="1" class="parallax hover" onclick="clickPicture(1)" style="background-image: url('./assets/photo-1.jpg');"></div>
+<div id="2" class="parallax hover" onclick="clickPicture(2)" style="background-image: url('./assets/photo-2.jpg');"></div>
+<div id="3" class="parallax hover" onclick="clickPicture(3)" style="background-image: url('./assets/photo-3.jpg');"></div>
+<div id="4" class="parallax hover" onclick="clickPicture(4)" style="background-image: url('./assets/photo-4.jpg');"></div>
+
+<div style="height: 160px;"></div>
+</body>
+
+<script>
+  let openPicture = null;
+  const pictures = ['./assets/photo-1.jpg', './assets/photo-2.jpg', './assets/photo-3.jpg', './assets/photo-4.jpg', './assets/photo-5.jpg']
+
+  function resizePicture(pic, url) {
+    const imgElement = document.createElement("img");
+    imgElement.src = url;
+    
+    imgElement.style.opacity = "100%"
+    imgElement.style.zIndex = "2";
+    imgElement.style.transition = "1s ease-in-out"
+    imgElement.id = "popUpImg"
+    document.getElementById("randomDiv").style.zIndex = "1"
+    document.getElementById("randomDiv").style.pointerEvents = "auto";
+    document.getElementById("randomDiv").style.opacity = "100%";
+    pic.style.maxHeight = "98vh";
+    pic.style.maxWidth = "98vw";
+    pic.classList.remove("hover");
+    setTimeout(function() {document.getElementById("popUpImg").style.opacity = "100%";imgElement.style.maxWidth = "calc(100vw - 10px)"; imgElement.style.maxHeight = "calc(100vh - 10px)"; imgElement.style.top = "50vh"; imgElement.style.border = "5px solid #756e6e";}, 10);
+    
+    pic.innerHTML = '';
+    pic.appendChild(imgElement);
+  }
+  
+  function clickPicture(picture) {
+    let pic = document.getElementById(picture);
+
+    if (openPicture === pic) {
+      closePicture(pic);
+    } else {
+      if (openPicture) {
+        closePicture(openPicture);
+      }
+
+    //   window.scrollTo({
+    //     top: pic.getBoundingClientRect().top + window.scrollY,
+    //     behavior: "smooth",
+    //   });
+      document.body.classList.add('no-scroll');
+      resizePicture(pic, pictures[picture - 1])
+      openPicture = pic;
+    }
+  }
+
+  function closePicture(pic) {
+    document.getElementById("randomDiv").style.opacity = "0%";
+    document.getElementById("randomDiv").style.pointerEvents = "none";
+    document.getElementById("randomDiv").style.transition = "1s ease-in-out";
+    document.getElementById("popUpImg").style.opacity = "100%";document.getElementById("popUpImg").style.maxWidth = "0vw"; document.getElementById("popUpImg").style.maxHeight = "0vh"; document.getElementById("popUpImg").style.top = "50vh"; document.getElementById("popUpImg").style.border = "0px solid #756e6e";
+    setTimeout(function() {document.body.classList.remove('no-scroll');
+    pic.classList.add("hover");
+    pic.innerHTML = '';
+    openPicture = null;}, 1000);
+  }
+</script>
+</html>
+=======
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,3 +248,4 @@ body.no-scroll {
   }
 </script>
 </html>
+>>>>>>> fcf6239942402630c204550ceead8b47b5b54c7f
